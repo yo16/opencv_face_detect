@@ -1,0 +1,2 @@
+# opencv_face_detect
+OpenCVを使って写真の中の顔の位置を認識する
