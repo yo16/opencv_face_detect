@@ -8,7 +8,7 @@ import cv2 as cv
 def min_sample():
     # 画像をグレースケール化
     # グレースケール化しなくてもよいが、グレースケール化した方が高速とのこと
-    img_file_name = 'input6.jpg'
+    img_file_name = 'input1.jpg'
     img_path = f'./input/{img_file_name}'
     img = cv.imread(img_path)
     img_gray = cv.cvtColor(img, cv.COLOR_BGR2GRAY)
@@ -24,9 +24,12 @@ def min_sample():
     face_cascade = cv.CascadeClassifier(xml_path)
 
     # 認識
+    # scaleFactorは、デフォルトは1.1、1.0に近いほど細かくチェックし、見逃しは少なく誤検出が増える
+    # minNeighborsは、デフォルトは3、0に近いほど見逃しは少なく誤検出が増える
     detected_faces = face_cascade.detectMultiScale(
         img_gray,
-        scaleFactor=1.11
+        scaleFactor=1.11,
+        minNeighbars=3
     )
     
     # 認識した個所に矩形を書いて保存
